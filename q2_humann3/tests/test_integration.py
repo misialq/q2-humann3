@@ -159,8 +159,7 @@ class RunHumannIntegrationTests(TestPluginBase):
 
     def _write_fake_metaphlan_executable(self, bin_dir: Path) -> None:
         executable = bin_dir / "metaphlan"
-        executable.write_text(
-            """#!/usr/bin/env python
+        executable.write_text("""#!/usr/bin/env python
 from pathlib import Path
 import sys
 
@@ -178,8 +177,7 @@ g__Bacteroides|s__Bacteroides_dorei\t357276\t100.0
 
 Path(sys.argv[sys.argv.index("-o") + 1]).write_text(profile)
 Path(sys.argv[sys.argv.index("--bowtie2out") + 1]).write_text("")
-"""
-        )
+""")
         executable.chmod(0o755)
 
     def test_partitioned_pipeline_matches_unpartitioned_run(self):
